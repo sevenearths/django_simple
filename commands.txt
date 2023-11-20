@@ -1,0 +1,5 @@
+# Must be running docker-compose up already
+docker exec -it django_simple_web_1 ./manage.py test
+docker tag django_simple_web_1:latest sevenearths1234/django-simple:latest
+docker push sevenearths1234/django-simple:latest
+docker tag django_simple_web_1:python-3.12.0-bullseye-django-4.2.6 sevenearths1234/django-simple:python-3.12.0-bullseye-django-4.2.6
