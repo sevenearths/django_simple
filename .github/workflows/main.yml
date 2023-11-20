@@ -1,7 +1,8 @@
-  name: Push into Main
+  name: All branches NOT main
   on:
     push:
-      branches: [ main ]
+      branches:
+        - '!main'
 
   jobs:
     test:
