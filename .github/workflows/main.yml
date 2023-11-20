@@ -18,4 +18,4 @@
           with:
             file: docker-compose.yml
             service: web
-            command: python manage.py test
+            command: tests.sh
