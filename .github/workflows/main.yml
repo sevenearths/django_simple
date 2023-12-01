@@ -1,4 +1,4 @@
-  name: All branches NOT main
+  name: tests
   on:
     push:
       branches:

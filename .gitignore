@@ -1,6 +1,9 @@
 # Ruff 
 .ruff_cache/
 
+# PostgreSQL data folder
+data/
+
 # Django #
 *.log
 *.pot

@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - development
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -10,8 +11,11 @@ jobs:
       - name: Checkout Latest Repo
         uses: actions/checkout@master
         
+      - name: Create ENV file
+        run: cp .env.example .env
+      
       - name: Generate Deployment Package 
-        run: zip -r deploy.zip * -x "**node_modules**"
+        run: zip -r deploy.zip *
         
       - name: Get timestamp
         uses: gerred/actions/current-time@master
@@ -26,14 +30,14 @@ jobs:
           replace-with: '-'
           flags: 'g'
           
-      - name: Deploy to EB
+      - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v14
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: simple-engineer-deployment-tutorial
-          environment_name: SimpleEngineerDeploymentTutorial-env
-          version_label: "the-simple-engineer-deployment-${{ steps.format-time.outputs.replaced }}"
+          application_name: django-simple-action
+          environment_name: django-simple-action-env
+          version_label: "django-simple-action-${{ steps.format-time.outputs.replaced }}"
           region: us-east-2
           deployment_package: deploy.zip
     
