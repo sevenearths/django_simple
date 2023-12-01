@@ -14,6 +14,9 @@ jobs:
       - name: Create ENV file
         run: cp .env.example .env
       
+      - name: show $ENV varibales
+        run: printenv
+      
       - name: Generate Deployment Package 
         run: zip -r deploy.zip *
         
